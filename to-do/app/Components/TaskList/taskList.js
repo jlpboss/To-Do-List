@@ -7,13 +7,15 @@ export default function TaskList(props){
     console.log(props.data)
     props.data.forEach(element => {
         out.push(
-            <Task
-                id={element.id}
-                isCompleated={element.isCompleated}
-                task={element.task}
-                onButtonClick={props.onButtonClick}
-                checkHandler={props.checkHandler}
-            />
+            <div key={element.id}>
+                <Task
+                    id={element.id}
+                    isCompleated={element.isCompleated}
+                    task={element.task}
+                    onButtonClick={props.onButtonClick}
+                    checkHandler={props.checkHandler}
+                />
+            </div>
         )
     });
     
