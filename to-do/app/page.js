@@ -31,7 +31,7 @@ export default function Home() {
   function handleRemoveTaskButton(e) {
     let temp = [...taskList];
     for(let item in temp){ 
-      if (temp[item].id === e.target.id) { 
+      if (temp[item].id === parseInt(e.target.id)) { 
         temp.splice(item, 1); 
       }
     }
@@ -41,7 +41,7 @@ export default function Home() {
   function handleCheckTaskBox(e) {
     let temp = [...taskList];
     for(let item in temp){ 
-      if (temp[item].id === e.target.id) { 
+      if (temp[item].id === parseInt(e.target.id)) { 
         temp[item].isCompleated = !temp[item].isCompleated
       }
     }

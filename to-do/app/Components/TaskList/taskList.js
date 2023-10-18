@@ -4,7 +4,6 @@ export default function TaskList(props){
     
     const out = []
 
-    console.log(props.data)
     props.data.forEach(element => {
         out.push(
             <div key={element.id}>
