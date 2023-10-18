@@ -22,7 +22,7 @@ export default function Navbar() {
                         <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="#">
                                 <Navtext
-                                    text={"Menu"}
+                                    text={"To-Do List"}
                                     class={""}
                                 />
                             </a>
