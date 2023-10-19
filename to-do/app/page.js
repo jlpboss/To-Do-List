@@ -1,10 +1,11 @@
 "use client"
 import Navbar from "./Components/Navbar/navbar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TaskInput from "./Components/TaskInput/taskInput";
 import makeTask from "./Components/TaskFunctions/makeTask";
 import "bootstrap/dist/css/bootstrap.css";
 import TaskList from "./Components/TaskList/taskList";
+import FilterBtns from "./Components/FIlterButtons/fIlterButtons";
 
 
 export default function Home() {
@@ -12,6 +13,11 @@ export default function Home() {
   const time = new Date();
   const [taskList, setTaskList] = useState([])
   const [inputFeild, setInputFeild] = useState("")
+  const [filter, setFilter] = useState("all")
+
+  useEffect(() => {
+    console.log(filter)
+  }, [filter]);
 
   function handleNewTaskButton() {
     
@@ -48,6 +54,10 @@ export default function Home() {
     setTaskList(temp)
   }
 
+  function handleFilterButton(e) {
+    setFilter(e.target.id)
+  }
+
   return (
     <>
       <Navbar />
@@ -60,6 +70,9 @@ export default function Home() {
       data={taskList}
       onButtonClick={handleRemoveTaskButton}
       checkHandler={handleCheckTaskBox}
+      />
+      <FilterBtns
+      onButtonClick={handleFilterButton}
       />
     </>
   )

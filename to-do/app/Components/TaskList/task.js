@@ -2,7 +2,7 @@ export default function Task(props){
     return(
         <div className="card">
             <div className="card-body">
-                <div class="d-flex flex-row">
+                <div className="d-flex flex-row">
                     <input 
                         type="checkbox" 
                         id={props.id} 
