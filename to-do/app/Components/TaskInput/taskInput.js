@@ -8,6 +8,7 @@ export default function TaskInput(props){
                 value={props.inputVal}
                 onChange={props.handleInputChange}
                 placeholder="Input Task Name"
+                onKeyDown={props.handleKeyDown}
             />
             <Btn
                 id={"input"}

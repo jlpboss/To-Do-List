@@ -55,6 +55,20 @@ export default function Home() {
     setTaskList([...taskList, task])
   }
 
+  function handleNewTaskEnter(e) {
+    
+    if (e.key === "Enter"){
+      let task = makeTask({
+        time: time.getTime(),
+        task: inputFeild,
+        isCompleated: false
+      })
+      localStorage.setItem("taskList", JSON.stringify([...taskList, task]));
+      setTaskList([...taskList, task])
+      setInputFeild("")
+    }
+  }
+
   function handleInputChange(e) {
     setInputFeild(e.target.value)
   }
@@ -114,6 +128,7 @@ export default function Home() {
       inputVal={inputFeild}
       handleInputChange={handleInputChange}
       onButtonClick={handleNewTaskButton}
+      handleKeyDown={handleNewTaskEnter}
       />
       <TaskCount
       remaining={taskList.filter((task) => !task.isCompleated).length}
