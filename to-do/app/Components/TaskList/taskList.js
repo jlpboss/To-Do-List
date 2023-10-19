@@ -8,6 +8,7 @@ export default function TaskList(props){
         out.push(
             <div key={element.id}>
                 <Task
+                    key={element.id}
                     id={element.id}
                     isCompleated={element.isCompleated}
                     task={element.task}
@@ -19,8 +20,8 @@ export default function TaskList(props){
     });
     
     return(
-        <>
-        {out}
-        </>
+        <div className="contaner">
+            {out}
+        </div>
     )
 }

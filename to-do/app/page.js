@@ -2,10 +2,12 @@
 import Navbar from "./Components/Navbar/navbar";
 import React, { useState, useEffect } from "react";
 import TaskInput from "./Components/TaskInput/taskInput";
-import makeTask from "./Components/TaskFunctions/makeTask";
+import makeTask from "./Components/TaskOther/makeTask";
 import "bootstrap/dist/css/bootstrap.css";
 import TaskList from "./Components/TaskList/taskList";
 import FilterBtns from "./Components/FIlterButtons/fIlterButtons";
+import TaskCount from "./Components/TaskOther/taskCount";
+import CheckAllBtns from "./Components/TaskOther/checkAllBtns";
 
 
 export default function Home() {
@@ -14,10 +16,32 @@ export default function Home() {
   const [taskList, setTaskList] = useState([])
   const [inputFeild, setInputFeild] = useState("")
   const [filter, setFilter] = useState("all")
+  const [filteredTaskList, SetFilteredTaskList] = useState([])
 
   useEffect(() => {
-    console.log(filter)
-  }, [filter]);
+    switch(filter){
+      case "all":
+        SetFilteredTaskList(taskList)
+        break
+      case "todo":
+        SetFilteredTaskList(taskList.filter((task) => !task.isCompleated))
+        break
+      case "done":
+        SetFilteredTaskList(taskList.filter((task) => task.isCompleated))
+        break
+    }
+  }, [filter, taskList]);
+
+  useEffect(() => {
+    if(localStorage.getItem("taskList") != "") {
+      setTaskList(JSON.parse(localStorage.getItem("taskList")))
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("b")
+  //   localStorage.setItem("taskList", JSON.stringify(taskList));
+  // }, [taskList]);
 
   function handleNewTaskButton() {
     
@@ -26,7 +50,8 @@ export default function Home() {
       task: inputFeild,
       isCompleated: false
     })
-
+    
+    localStorage.setItem("taskList", JSON.stringify([...taskList, task]));
     setTaskList([...taskList, task])
   }
 
@@ -41,6 +66,7 @@ export default function Home() {
         temp.splice(item, 1); 
       }
     }
+    localStorage.setItem("taskList", JSON.stringify(temp));
     setTaskList(temp)
   }
 
@@ -58,6 +84,29 @@ export default function Home() {
     setFilter(e.target.id)
   }
 
+  function handleCheckAllBtns(e) {
+    switch(e.target.id){
+      case "check":
+        setTaskList(taskList.map((currentTask) => {
+          return {
+            id: currentTask.id,
+            task: currentTask.task,
+            isCompleated: true
+        }
+        } ))
+        break
+      case "uncheck":
+        setTaskList(taskList.map((currentTask) => {
+          return {
+            id: currentTask.id,
+            task: currentTask.task,
+            isCompleated: false
+        }
+        } ))
+        break
+    }
+  }
+
   return (
     <>
       <Navbar />
@@ -66,13 +115,19 @@ export default function Home() {
       handleInputChange={handleInputChange}
       onButtonClick={handleNewTaskButton}
       />
+      <TaskCount
+      remaining={taskList.filter((task) => !task.isCompleated).length}
+      />
       <TaskList
-      data={taskList}
+      data={filteredTaskList}
       onButtonClick={handleRemoveTaskButton}
       checkHandler={handleCheckTaskBox}
       />
       <FilterBtns
       onButtonClick={handleFilterButton}
+      />
+      <CheckAllBtns
+      onButtonClick={handleCheckAllBtns}
       />
     </>
   )

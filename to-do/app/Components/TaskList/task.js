@@ -1,3 +1,5 @@
+import Btn from "../General/btn"
+
 export default function Task(props){
     return(
         <div className="card">
@@ -10,12 +12,13 @@ export default function Task(props){
                         onChange={props.checkHandler} 
                     />
                     <p className="card-text">{props.task}</p>
-                    <button 
-                        id={props.id}
-                        onClick={props.onButtonClick}
-                    >
-                        X
-                    </button>
+                    <Btn
+                    id={props.id}
+                    text={"X"}
+                    onButtonClick={props.onButtonClick}
+                    type={"button"}
+                    name={"end task"}
+                    />
                 </div>
             </div>
         </div>
