@@ -6,7 +6,7 @@ export default function TaskList(props){
 
     props.data.forEach(element => {
         out.push(
-            <div key={element.id}>
+            <div key={element.id} className="mb-3">
                 <Task
                     key={element.id}
                     id={element.id}

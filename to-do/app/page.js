@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import TaskInput from "./Components/TaskInput/taskInput";
 import makeTask from "./Components/TaskOther/makeTask";
 import "bootstrap/dist/css/bootstrap.css";
+import "./globals.css"
 import TaskList from "./Components/TaskList/taskList";
 import FilterBtns from "./Components/FIlterButtons/fIlterButtons";
 import TaskCount from "./Components/TaskOther/taskCount";
@@ -122,7 +123,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <main>
       <Navbar />
       <TaskInput
       inputVal={inputFeild}
@@ -144,6 +145,6 @@ export default function Home() {
       <CheckAllBtns
       onButtonClick={handleCheckAllBtns}
       />
-    </>
+    </main>
   )
 }
