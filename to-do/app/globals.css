@@ -1,3 +1,4 @@
+
 main{
     background-color: rgb(45, 45, 45);
     color: rgb(192, 211, 175);
@@ -19,4 +20,21 @@ input{
 .card {
     border-color: rgb(92, 68, 89);
     border-width: 3px;
+}
+.navbar-toggler{
+    color: rgb(192, 211, 175);
+    background-color: rgb(192, 211, 175);
+    background: rgb(192, 211, 175);
+}
+.bg-body-tertiary {
+    background-color: rgb(45, 45, 45);
+}
+nav{
+    background-color: rgb(45, 45, 45);
+    color: rgb(192, 211, 175);
+    padding: 0 !important; 
+}
+.navbar-toggler-icon{
+    color: rgb(192, 211, 175);
+    background-color: rgb(192, 211, 175);;
 }
